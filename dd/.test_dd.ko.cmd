@@ -1,0 +1,1 @@
+cmd_/root/work/dd/test_dd.ko := arm-none-linux-gnueabi-ld -EL -r  -T /root/work/achroimx6q/kernel/scripts/module-common.lds --build-id  -o /root/work/dd/test_dd.ko /root/work/dd/test_dd.o /root/work/dd/test_dd.mod.o
