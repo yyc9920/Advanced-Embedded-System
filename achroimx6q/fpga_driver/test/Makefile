@@ -1,22 +1,26 @@
-DEV	:= fnd
-DD	:= fpga_$(DEV)_driver
+DEV	:= test
+FND	:= fpga_fnd_driver
+SWT	:= fpga_push_switch_driver
 APP	:= fpga_$(DEV)_test
 TFTPDIR := /tftpboot
 CC 	= arm-none-linux-gnueabi-gcc
 KDIR	:= /root/work/achroimx6q/kernel
 PWD	:= $(shell pwd)
-obj-m	:= $(DD).o
+obj-m	:= $(FND).o $(SWT).o
 
-all:	$(DD) $(APP)
+all:	$(FND) $(SWT) $(APP)
 
-$(DD):	$(DD).c
+$(FND):	$(FND).c
 	$(MAKE) -C $(KDIR) SUBDIRS=$(PWD) modules ARCH=arm
+
+$(SWT):	$(SWT).c
+	$(MAKE)	-C $(KDIR) SUBDIRS=$(PWD) modules ARCH=arm
 
 $(APP): $(APP).c
 	$(CC) -o $(APP) $(APP).c
 
 install:
-	cp -a $(DD).ko $(APP) $(TFTPDIR)
+	cp -a .ko $(APP) $(TFTPDIR)
 
 clean:
 	rm -rf *.ko *.mod.* *.order *.symvers *.o $(APP)
