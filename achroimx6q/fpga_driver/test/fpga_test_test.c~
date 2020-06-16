@@ -168,8 +168,8 @@ void main(void)
 	char data_str[5] = {'0', '0', '0', '0', '0'};
 	char value[4];
 	char otp_bi[16], dip_bi[16];
-	char mat = "MATCH!";
-	char dis_mat = "DISMATCH!";
+	char *mat = "MATCH!";
+	char *dis_mat = "DISMATCH!";
 	
 	for(i = 0; i < 5; i++)
 	{

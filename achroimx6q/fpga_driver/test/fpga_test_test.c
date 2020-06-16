@@ -149,14 +149,17 @@ char *intToBinary(int i)
 }
 
 int dip_switch(void) {
-	unsigned char dip_sw_buf = 0;
+	int dip_sw_buf = 0;
 	int dev_dip_switch, quit = 0;
 
 	dev_dip_switch = open(DIP_SWITCH_DEVICE, O_RDONLY);
 
 	while (!quit) {
 		read(dev_dip_switch, &dip_sw_buf, 1);
-		if(push_switch()) quit = 1;
+		if(push_switch()){
+			quit = 1;
+			printf("%d\n", dip_sw_buf);
+		}
 	}
 	close(dev_dip_switch);
 	return dip_sw_buf;
