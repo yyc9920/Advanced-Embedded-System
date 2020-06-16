@@ -38,6 +38,11 @@
 #define	STEP_MOTOR_SPDVAL_MIN	0	//min value, fastest
 #define STEP_MOTOR_SPDVAL_MAX	255	//max value, slowest
 
+#define BUZZER_DEVICE		"/dev/fpga_buzzer"
+#define BUZZER_ON		0
+#define BUZZER_OFF		1
+#define BUZZER_TOGGLE(x)	(1-(x))
+
 void assert(int cond, char *msg){
 	if(!cond){
 		printf("%s\n", msg);

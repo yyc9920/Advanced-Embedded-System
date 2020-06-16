@@ -1,0 +1,1 @@
+cmd_/root/work/text_LCD/fpga_text_lcd_driver.ko := arm-none-linux-gnueabi-ld -EL -r  -T /root/work/achroimx6q/kernel/scripts/module-common.lds --build-id  -o /root/work/text_LCD/fpga_text_lcd_driver.ko /root/work/text_LCD/fpga_text_lcd_driver.o /root/work/text_LCD/fpga_text_lcd_driver.mod.o
