@@ -62,6 +62,7 @@
 #include "display.h"
 #include <pthread.h>
 #include "../include/fpga_test.h"
+#include "../include/fpga_dot_font.h"
 // These are the sizes of the individual character arrays
 #define CHAR_ARR__29x24 696
 #define CHAR_ARR__10x14 168
@@ -90,7 +91,11 @@ char *password, *passwd_input;
 #define pass_dismatch 2
 
 int section, compare, next = 0;
-int dev_fnd, dev_push_switch, dev_step_motor, dev_buzzer, dev_dip_switch, dev_text_lcd;
+int dev_fnd, dev_push_switch, dev_step_motor, dev_buzzer, dev_dip_switch, dev_text_lcd, dev_dot;
+char empty[16] = "                ";
+/**************CountDown Define***************/
+#define stop_sign 0
+int count_stop;
 /********Data Structure Define Starts Here*********/
 
 #define MAX_WORD_LENGTH 20
@@ -1024,6 +1029,7 @@ void *mainThread(void *data)
 				dec(temp->key.passwd, temp->key.randNum, password);
 				section = password_section;
 				while(!next);
+				count_stop = stop_sign;
 				if(strcmp(password, passwd_input))
 				{
 					compare = pass_dismatch;
@@ -2540,6 +2546,18 @@ int dip_switch(void) {
 	return dip_sw_buf;
 }
 
+void dot(int num) {
+	ssize_t ret;
+
+	char usage[50];
+
+	dev_dot = open(DOT_DEVICE, O_WRONLY);
+
+	ret = write(dev_dot, fpga_number[num], sizeof(fpga_number[num]));
+
+	close(dev_dot);
+}
+
 double betting(double i)
 {
 	double prof_los = 0;
@@ -2585,8 +2603,8 @@ void *fpgaThread(void *data)
 	char data_str[5] = {'0', '0', '0', '0', '0'};
 	char value[4];
 	char otp_bi[16], dip_bi[16];
-	char *mat = "MATCH!";
-	char *dis_mat = "DISMATCH!";
+	char *mat = "    MATCH!    ";
+	char *dis_mat = "   DISMATCH!   ";
 
 	dev_fnd = open(FND_DEVICE, O_RDWR);
 	dev_push_switch = open(PUSH_SWITCH_DEVICE, O_RDONLY);
@@ -2613,11 +2631,11 @@ void *fpgaThread(void *data)
 			passwd_input = value;
 
 			otp_int = otp_num();
-			sprintf(otp_bi, "%s", intToBinary(otp_int));
+			sprintf(otp_bi, "%s     ", intToBinary(otp_int));
 			text_lcd(otp_bi, "");
 
 			dip_int = dip_switch();
-			sprintf(dip_bi, "%s", intToBinary(dip_int));
+			sprintf(dip_bi, "%s     ", intToBinary(dip_int));
 			if(dip_int == otp_int)	
 			{
 				text_lcd(mat, dip_bi);
@@ -2656,6 +2674,7 @@ void *fpgaThread(void *data)
 				compare = 0;
 			}
 		}
+		text_lcd(empty, empty);
 	}
 
 	close(dev_fnd);
@@ -2666,16 +2685,43 @@ void *fpgaThread(void *data)
 	close(dev_dip_switch);
 }
 
+void *countdownThread(){
+	int i = 30;
+	int dot_val;
+	char led_val;
+
+	while(1){
+		for(i; i >= 0; i--)
+		{
+			text_lcd(" Enter PASSWORD ",empty);
+			sprintf(led_val, "%d", i % 10);
+			dot_val = i / 10;
+			led(led_val);
+			dot(i);
+			sleep(1);
+			if(count_stop == stop_sign)
+				break;
+		}
+		if(i == 0)
+		{
+			text_lcd("    Time Over   ", empty);
+			buzzer(2);
+		}
+		dot(0);
+		text_lcd(empty, empty);
+	}
+}
 
 int main()
 {
 
-	pthread_t p_thread[3];
+	pthread_t p_thread[4];
 	int thr_id;
 	int status;
 	char p1[] = "thread_1"; // 1šř ž˛ˇšľĺ ŔĚ¸§
 	char pM[] = "thread_m"; // ¸ŢŔÎ ž˛ˇšľĺ ŔĚ¸§
 	char pfpga[] = "thread_fpga";
+	char pcdown[] = "thread_cdown";
 
 	pthread_mutex_init(&mtx, NULL);
 
@@ -2705,9 +2751,18 @@ int main()
 		exit(0);
 	}
 
+	thr_id = pthread_create(&p_thread[3], NULL, countdownThread, (void *)pcdown);
+
+	if (thr_id < 0)
+	{
+		printf("thread create error : countdownThread");
+		exit(0);
+	}
+
 	pthread_join(p_thread[0], (void *)&status);
 	pthread_join(p_thread[1], (void *)&status);
 	pthread_join(p_thread[2], (void *)&status);
+	pthread_join(p_thread[3], (void *)&status);
 
 	return 0;
 }

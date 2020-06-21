@@ -1,0 +1,14 @@
+{
+    "files.associations": {
+        "terminal.integrated.shellArgs.windows": [
+            "/K",
+            "chcp 65001"
+        ],
+        "list": "c",
+        "vector": "c",
+        "xhash": "c",
+        "xstring": "c",
+        "xtree": "c",
+        "xutility": "c"
+    }
+}

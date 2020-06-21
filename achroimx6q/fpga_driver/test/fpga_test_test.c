@@ -1,4 +1,5 @@
 #include "../include/fpga_test.h"
+#include "../include/fpga_dot_font.h"
 
 int dev_fnd, dev_push_switch, dev_step_motor, dev_buzzer, dev_dip_switch, dev_text_lcd;
 
@@ -139,6 +140,51 @@ int dip_switch(void) {
 	return dip_sw_buf;
 }
 
+void dot(int num) {
+	int dev_dot;
+	ssize_t ret;
+
+	char usage[50];
+
+	dev_dot = open(DOT_DEVICE, O_WRONLY);
+
+	ret = write(dev_dot, fpga_number[num], sizeof(fpga_number[num]));
+
+	close(dev_dot);
+}
+
+void led(char data) {
+	int dev_led;
+	ssize_t ret;
+
+	char usage[50];
+	
+	dev_led = open(LED_DEVICE, O_RDWR);
+
+	ret = write(dev_led, &data, 1);
+
+	sleep(1);
+
+	ret = read(dev_led, &data, 1);
+
+	close(dev_led);
+}
+
+void countdown(){
+	int i = 30;
+	int dot_val;
+	char led_val;
+	
+	for(i; i > 0; i--)
+	{
+		sprintf(led_val, "%d", i % 10);
+		dot_val = i / 10;
+		led(led_val);
+		dot(dot_val);
+		sleep(1);
+	}
+}
+
 double betting(double i)
 {
 	double prof_los = 0;
@@ -173,6 +219,7 @@ double betting(double i)
 
 	return i;
 }
+
 void main(void)
 {
 	int data[5] = {0}, i, otp_int, dip_int;
