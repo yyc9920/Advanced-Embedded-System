@@ -2716,6 +2716,7 @@ void *fpgaThread(void *data)
 				buzzer(2);
 				compare = 0;
 			}
+			else;
 		}
 	}
 
