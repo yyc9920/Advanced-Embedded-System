@@ -978,7 +978,6 @@ void *mainThread(void *data)
 				{
 					compare = pass_match;
 				}
-				step = SELECTSTEP;
 			}
 		}
 		/*--------------------------Get Touch And Redraw Display Here-------------------------*/
@@ -2645,7 +2644,7 @@ void *fpgaThread(void *data)
 	int data_ps[5] = {0}, i, otp_int, dip_int;
 	char data_str[5] = {'0', '0', '0', '0', '0'};
 	char value[4];
-	char otp_bi[16], dip_bi[16];
+	char otp_bi[16] = {0}, dip_bi[16] = {0};
 	char *mat = "MATCH!";
 	char *dis_mat = "DISMATCH!";
 
@@ -2676,11 +2675,11 @@ void *fpgaThread(void *data)
 				passwd_input[i] = data_ps[i];
 
 			otp_int = otp_num();
-			sprintf(otp_bi, "%s     ", intToBinary(otp_int));
-			text_lcd(otp_bi, "");
+			sprintf(otp_bi, "%s", intToBinary(otp_int));
+			text_lcd(otp_bi, "=Dip_Switch_ON=");
 
 			dip_int = dip_switch();
-			sprintf(dip_bi, "%s     ", intToBinary(dip_int));
+			sprintf(dip_bi, "%s", intToBinary(dip_int));
 			if(dip_int == otp_int)	
 			{
 				text_lcd(mat, dip_bi);
@@ -2689,6 +2688,7 @@ void *fpgaThread(void *data)
 				step_motor(0, 1, 5);
 				section = 0;
 				next = 1;
+				step = SELECTSTEP;
 			}
 			else 
 			{
