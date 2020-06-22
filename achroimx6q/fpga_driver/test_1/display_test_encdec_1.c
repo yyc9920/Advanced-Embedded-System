@@ -42,7 +42,7 @@ char password[5], passwd_input[4];
 #define pass_match 1
 #define pass_dismatch 2
 
-int section = 0, compare, next = 0;
+int section = 0, compare_mat, next = 0;
 int dev_fnd, dev_dot, dev_push_switch, dev_step_motor, dev_buzzer, dev_dip_switch, dev_text_lcd, dev_led;
 char empty[16] = "---------------";
 /**************CountDown Define***************/
@@ -975,13 +975,13 @@ void *mainThread(void *data)
 					password[2] == passwd_input[2] &&
 					password[3] == passwd_input[3])
 				{
-					compare = pass_match;
+					compare_mat = pass_match;
 					for(int i = 0; i < 4; i++)
 						passwd_input[i] = '0';
 				}
 				else 
 				{
-					compare = pass_dismatch;
+					compare_mat = pass_dismatch;
 					for(int i = 0; i < 4; i++)
 						passwd_input[i] = '0';
 				}
@@ -2701,20 +2701,20 @@ void *fpgaThread(void *data)
 		}
 		else if(section == match_section)
 		{
-			if(compare == pass_match)
+			if(compare_mat == pass_match)
 			{
 				step_motor(1, 1, 5);
 				sleep(3);
 				step_motor(0, 1, 5);
 				next = 1;
-				compare = 0;
+				compare_mat = 0;
 				step = SELECTSTEP;
 				section = 0;
-			} printf("%d\n"compare);
-			if(compare == pass_dismatch)
+			} printf("%d\n"compare_mat);
+			if(compare_mat == pass_dismatch)
 			{
 				buzzer(2);
-				compare = 0;
+				compare_mat = 0;
 			}
 			else;
 		}
