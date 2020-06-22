@@ -968,7 +968,7 @@ void *mainThread(void *data)
 				//printf("test2");
 				section = password_section;
 				while(!next);
-				//count_stop = stop_sign;
+				count_stop = stop_sign;
 				section = match_section;
 				if(password[0] == passwd_input[0] &&
 					password[1] == passwd_input[1] &&
@@ -2731,14 +2731,14 @@ void *fpgaThread(void *data)
 }
 
 void *countdownThread(void *data){
-	int i = 30;
+	int i;
 	int dot_val;
 	int led_val;
 	dev_led = open(LED_DEVICE, O_RDWR);
 	dev_dot = open(DOT_DEVICE, O_WRONLY);
 
 	while(1){
-		for(i; i >= 0; i--)
+		for(i = 30; i >= 0; i--)
 		{
 			led_val = i / 10;
 			dot_val = i % 10;
