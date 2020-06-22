@@ -2751,7 +2751,6 @@ void *countdownThread(){
 	close(dev_led);
 	close(dev_dot);
 }
-}
 
 int main()
 {
