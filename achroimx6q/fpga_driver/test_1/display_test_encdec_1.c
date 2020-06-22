@@ -965,24 +965,24 @@ void *mainThread(void *data)
 			while (1)
 			{
 				section = password_section;
-				while(!next) 
-					sleep(1);
-				count_stop = stop_sign;
-				section = match_section;
-				if(password[0] == passwd_input[0] &&
-					password[1] == passwd_input[1] &&
-					password[2] == passwd_input[2] &&
-					password[3] == passwd_input[3])
-				{
-					compare_mat = pass_match;
-					//for(int i = 0; i < 4; i++)
-					//	passwd_input[i] = '0';
-				}
-				else 
-				{
-					compare_mat = pass_dismatch;
-					//for(int i = 0; i < 4; i++)
-					//	passwd_input[i] = '0';
+				while(next = 0){
+					count_stop = stop_sign;
+					section = match_section;
+					if(password[0] == passwd_input[0] &&
+						password[1] == passwd_input[1] &&
+						password[2] == passwd_input[2] &&
+						password[3] == passwd_input[3])
+					{
+						compare_mat = pass_match;
+						//for(int i = 0; i < 4; i++)
+						//	passwd_input[i] = '0';
+					}
+					else 
+					{
+						compare_mat = pass_dismatch;
+						//for(int i = 0; i < 4; i++)
+						//	passwd_input[i] = '0';
+					}
 				}
 				//next = 1;
 			}
@@ -2708,6 +2708,7 @@ void *fpgaThread(void *data)
 				step_motor(0, 1, 5);
 				next = 1;
 				compare_mat = 0;
+				crlcnt = 0;
 				step = SELECTSTEP;
 				section = 0;
 			} printf("%d\n",compare_mat);
