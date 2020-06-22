@@ -44,7 +44,7 @@ char password[5], passwd_input[4];
 
 int section = 0, compare, next = 0;
 int dev_fnd, dev_dot, dev_push_switch, dev_step_motor, dev_buzzer, dev_dip_switch, dev_text_lcd, dev_led;
-char empty[16] = "----------------";
+char empty[16] = "---------------";
 /**************CountDown Define***************/
 #define stop_sign 0
 int count_stop;
@@ -975,15 +975,15 @@ void *mainThread(void *data)
 					password[2] == passwd_input[2] &&
 					password[3] == passwd_input[3])
 				{
-					compare = pass_match;
 					for(int i = 0; i < 4; i++)
 						passwd_input[i] = '0';
+					compare = pass_match;
 				}
 				else 
 				{
-					compare = pass_dismatch;
 					for(int i = 0; i < 4; i++)
 						passwd_input[i] = '0';
+					compare = pass_dismatch;
 				}
 			}
 		}
@@ -2717,8 +2717,6 @@ void *fpgaThread(void *data)
 			{
 				//text_lcd(dis_mat, dip_bi);
 				buzzer(2);
-				section = 0;
-				next = 0;
 				compare = 0;
 			}
 		}
