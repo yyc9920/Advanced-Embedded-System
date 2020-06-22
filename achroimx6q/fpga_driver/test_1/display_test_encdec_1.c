@@ -43,7 +43,7 @@ char *password, *passwd_input;
 #define pass_dismatch 2
 
 int section = 0, compare, next = 0;
-int dev_fnd, dev_push_switch, dev_step_motor, dev_buzzer, dev_dip_switch, dev_text_lcd, dev_dot;
+int dev_fnd, dev_dot, dev_push_switch, dev_step_motor, dev_buzzer, dev_dip_switch, dev_text_lcd, dev_led;
 char empty[16] = "----------------";
 /**************CountDown Define***************/
 #define stop_sign 0
