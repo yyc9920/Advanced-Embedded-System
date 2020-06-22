@@ -2294,6 +2294,7 @@ void *mainThread(void *data)
 					temp->key.transCnt++;
 
 					step = SENDALERT;
+				}
 			}
 		}
 
@@ -2404,7 +2405,6 @@ void *mainThread(void *data)
 		/*--------------------------Get Touch And Redraw Display Here-------------------------*/
 	}
 }
-
 //TODO : Make Main Thread.
 
 /*TODO : fnd Ãâ·Â, Çª½Ã¹öÆ° ÀÔ·Â(1~9±îÁö), dip½ºÀ§Ä¡ ÀÔ·Â, ÅØ½ºÆ® lcdÃâ·Â, 
