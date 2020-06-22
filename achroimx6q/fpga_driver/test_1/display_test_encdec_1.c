@@ -966,7 +966,7 @@ void *mainThread(void *data)
 			{
 				section = password_section;
 				while(!next) 
-					usleep(100);
+					sleep(1);
 				count_stop = stop_sign;
 				section = match_section;
 				if(password[0] == passwd_input[0] &&
@@ -984,7 +984,7 @@ void *mainThread(void *data)
 					//for(int i = 0; i < 4; i++)
 					//	passwd_input[i] = '0';
 				}
-				next = 1;
+				//next = 1;
 			}
 		}
 		/*--------------------------Get Touch And Redraw Display Here-------------------------*/
