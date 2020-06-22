@@ -976,14 +976,14 @@ void *mainThread(void *data)
 					password[3] == passwd_input[3])
 				{
 					compare_mat = pass_match;
-					for(int i = 0; i < 4; i++)
-						passwd_input[i] = '0';
+					//for(int i = 0; i < 4; i++)
+					//	passwd_input[i] = '0';
 				}
 				else 
 				{
 					compare_mat = pass_dismatch;
-					for(int i = 0; i < 4; i++)
-						passwd_input[i] = '0';
+					//for(int i = 0; i < 4; i++)
+					//	passwd_input[i] = '0';
 				}
 				next = 1;
 			}
