@@ -985,6 +985,7 @@ void *mainThread(void *data)
 					for(int i = 0; i < 4; i++)
 						passwd_input[i] = '0';
 				}
+				next = 1;
 			}
 		}
 		/*--------------------------Get Touch And Redraw Display Here-------------------------*/
