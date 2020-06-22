@@ -90,9 +90,9 @@ char *password, *passwd_input;
 #define pass_match 1
 #define pass_dismatch 2
 
-int section, compare, next = 0;
+int section = 0, compare, next = 0;
 int dev_fnd, dev_push_switch, dev_step_motor, dev_buzzer, dev_dip_switch, dev_text_lcd, dev_dot;
-char empty[16] = "                ";
+char empty[16] = "----------------";
 /**************CountDown Define***************/
 #define stop_sign 0
 int count_stop;
@@ -2546,6 +2546,23 @@ int dip_switch(void) {
 	return dip_sw_buf;
 }
 
+void led(char data1) {
+	int dev_led;
+	ssize_t ret;
+
+	char usage[50];
+	
+	dev_led = open(LED_DEVICE, O_RDWR);
+
+	ret = write(dev_led, &data1, 1);
+
+	sleep(1);
+
+	ret = read(dev_led, &data1, 1);
+
+	close(dev_led);
+}
+
 void dot(int num) {
 	ssize_t ret;
 
@@ -2688,15 +2705,15 @@ void *fpgaThread(void *data)
 void *countdownThread(){
 	int i = 30;
 	int dot_val;
-	char led_val;
+	int led_val;
 
 	while(1){
 		for(i; i >= 0; i--)
 		{
 			text_lcd(" Enter PASSWORD ",empty);
-			sprintf(led_val, "%d", i % 10);
+			led_val = i % 10;
 			dot_val = i / 10;
-			led(led_val);
+			led((char)led_val);
 			dot(i);
 			sleep(1);
 			if(count_stop == stop_sign)
