@@ -2740,11 +2740,11 @@ void *countdownThread(void *data){
 	while(1){
 		for(i; i >= 0; i--)
 		{
-			led_val = i % 10;
-			dot_val = i / 10;
+			led_val = i / 10;
+			dot_val = i % 10;
 			led((char)led_val);
 			dot(i);
-			sleep(1);
+			sleep(0.5);
 			if(count_stop == stop_sign)
 				break;
 		}
