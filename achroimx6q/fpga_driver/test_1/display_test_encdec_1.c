@@ -985,6 +985,7 @@ void *mainThread(void *data)
 					compare = pass_dismatch;
 				}
 				section = match_section;
+				next = 1;
 			}
 		}
 		/*--------------------------Get Touch And Redraw Display Here-------------------------*/
@@ -2678,8 +2679,10 @@ void *fpgaThread(void *data)
 			reset_fnd();
 
 			//passwd_input = value;
-			for(i = 0; i < 4; i++)
+			for(i = 0; i < 4; i++){
 				passwd_input[i] = data_ps[i];
+				printf("d\n", passwd_input[i]);
+			}
 
 			otp_int = otp_num();
 			sprintf(otp_bi, "%s", intToBinary(otp_int));
