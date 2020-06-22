@@ -2546,6 +2546,23 @@ int dip_switch(void) {
 	return dip_sw_buf;
 }
 
+void led(char data) {
+	int dev_led;
+	ssize_t ret;
+
+	char usage[50];
+	
+	dev_led = open(LED_DEVICE, O_RDWR);
+
+	ret = write(dev_led, &data, 1);
+
+	sleep(1);
+
+	ret = read(dev_led, &data, 1);
+
+	close(dev_led);
+}
+
 void dot(int num) {
 	ssize_t ret;
 
@@ -2688,15 +2705,15 @@ void *fpgaThread(void *data)
 void *countdownThread(){
 	int i = 30;
 	int dot_val;
-	char led_val;
+	int led_val;
 
 	while(1){
 		for(i; i >= 0; i--)
 		{
 			text_lcd(" Enter PASSWORD ",empty);
-			sprintf(led_val, "%d", i % 10);
+			led_val = i % 10;
 			dot_val = i / 10;
-			led(led_val);
+			led((char)led_val);
 			dot(i);
 			sleep(1);
 			if(count_stop == stop_sign)
