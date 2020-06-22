@@ -953,13 +953,14 @@ void *mainThread(void *data)
 				// close kb file
 				close(kbfd);
 			}
-			printf("testreset\n");/*
+			printf("testreset\n");
 			// reset the display mode
 			if (ioctl(fbfd, FBIOPUT_VSCREENINFO, &orig_vinfo))
 			{
 				printf("Error re-setting variable information.\n");
-			}*/
+			}
 			printf("while_bf");
+			sleep(1);
 			while (1)
 			{
 				printf("test1");
