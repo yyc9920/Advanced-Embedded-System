@@ -2725,6 +2725,8 @@ void *countdownThread(){
 	int i = 30;
 	int dot_val;
 	int led_val;
+	dev_led = open(LED_DEVICE, O_RDWR);
+	dev_dot = open(DOT_DEVICE, O_WRONLY);
 
 	while(1){
 		for(i; i >= 0; i--)
@@ -2746,6 +2748,9 @@ void *countdownThread(){
 		dot(0);
 		text_lcd(empty, empty);
 	}
+	close(dev_led);
+	close(dev_dot);
+}
 }
 
 int main()
