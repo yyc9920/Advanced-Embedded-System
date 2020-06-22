@@ -913,6 +913,7 @@ void *mainThread(void *data)
 					// clear the previous image (= fill entire screen)
 					if (clrcnt == 0)
 						clear_screen(0);
+					printf("testfor");
 					drawline(100, 400, xloc + 222, 555);
 					draw_string(880, 40, (char *)"ACCOUNT NUMBER", 14, 6, 9, 10, 2);
 					draw_string(880, 140, (char *)"PASSWORD", 8, 6, 9, 10, 2);
@@ -940,7 +941,7 @@ void *mainThread(void *data)
 				clrcnt = 1;
 				//-----------------------------------------------------------graphics loop here
 			}
-
+			printf("testforout");
 			// unmap fb file from memory
 			munmap(fbp, screensize);
 			// reset cursor
@@ -955,7 +956,7 @@ void *mainThread(void *data)
 			{
 				printf("Error re-setting variable information.\n");
 			}
-
+			printf("while_bf");
 			while (1)
 			{
 				printf("test1");
