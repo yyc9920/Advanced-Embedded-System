@@ -970,15 +970,18 @@ void *mainThread(void *data)
 				while(!next);
 				count_stop = stop_sign;
 				section = match_section;
-				if(strcmp(password, passwd_input))
+				if(password[0] == passwd_input[0] &&
+					password[1] == passwd_input[1] &&
+					password[2] == passwd_input[2] &&
+					password[3] == passwd_input[3])
 				{
-					compare = pass_dismatch;
+					compare = pass_match;
 					for(int i = 0; i < 4; i++)
 						passwd_input[i] = '0';
 				}
 				else 
 				{
-					compare = pass_match;
+					compare = pass_dismatch;
 					for(int i = 0; i < 4; i++)
 						passwd_input[i] = '0';
 				}
@@ -2713,12 +2716,11 @@ void *fpgaThread(void *data)
 			else if(compare == pass_dismatch)
 			{
 				//text_lcd(dis_mat, dip_bi);
-				buzzer(1);
+				buzzer(2);
 				section = 0;
 				next = 0;
 				compare = 0;
 			}
-		text_lcd(empty, empty);
 		}
 	}
 
