@@ -2701,10 +2701,10 @@ void *fpgaThread(void *data)
 		else if(section == match_section)
 		{
 			if(compare_mat == pass_match)
-			{
+			{/*
 				step_motor(1, 1, 5);
 				sleep(3);
-				step_motor(0, 1, 5);
+				step_motor(0, 1, 5);*/
 				next = 1;
 				compare_mat = 0;
 				clrcnt = 0;
@@ -2713,7 +2713,7 @@ void *fpgaThread(void *data)
 			} printf("%d\n",compare_mat);
 			if(compare_mat == pass_dismatch)
 			{
-				buzzer(2);
+				//buzzer(2);
 				compare_mat = 0;
 			}
 			else;
