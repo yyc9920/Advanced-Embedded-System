@@ -915,9 +915,7 @@ void *mainThread(void *data)
 						clear_screen(0);
 					drawline(100, 400, xloc + 222, 555);
 					draw_string(880, 40, (char *)"ACCOUNT NUMBER", 14, 6, 9, 10, 2);
-					draw_string(880, 80, e.accountNum, strlen(e.accountNum), 6, 9, 10, 2);
 					draw_string(880, 140, (char *)"PASSWORD", 8, 6, 9, 10, 2);
-					draw_string(880, 180, e.passwd, strlen(e.passwd), 6, 9, 10, 2);
 					draw_string(400, 50, (char *)"B", 1, 6, 9, 10, 2);
 					draw_string(400, 100, (char *)"A", 1, 6, 9, 10, 2);
 					draw_string(400, 150, (char *)"S", 1, 6, 9, 10, 2);
