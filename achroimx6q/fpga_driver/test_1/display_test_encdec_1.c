@@ -975,12 +975,13 @@ void *mainThread(void *data)
 					password[2] == passwd_input[2] &&
 					password[3] == passwd_input[3])
 				{
+					compare = pass_match;
 					for(int i = 0; i < 4; i++)
 						passwd_input[i] = '0';
-					compare = pass_match;
 				}
 				else 
 				{
+					compare = pass_dismatch;
 					for(int i = 0; i < 4; i++)
 						passwd_input[i] = '0';
 					compare = pass_dismatch;
@@ -2707,10 +2708,10 @@ void *fpgaThread(void *data)
 				step_motor(1, 1, 5);
 				sleep(3);
 				step_motor(0, 1, 5);
-				section = 0;
 				next = 1;
 				compare = 0;
 				step = SELECTSTEP;
+				section = 0;
 			}
 			else if(compare == pass_dismatch)
 			{
