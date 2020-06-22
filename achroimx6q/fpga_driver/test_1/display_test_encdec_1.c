@@ -2712,7 +2712,7 @@ void *fpgaThread(void *data)
 				sleep(3);
 				step_motor(0, 1, 5);
 				section = 0;
-				next = 0;
+				next = 1;
 				compare = 0;
 				step = SELECTSTEP;
 			}
