@@ -13,6 +13,8 @@
 #include <signal.h>
 #include "display.h"
 #include <pthread.h>
+#include "../include/fpga_test.h"
+#include "../include/fpga_dot_font.h"
 // These are the sizes of the individual character arrays
 #define CHAR_ARR__29x24 696
 #define CHAR_ARR__10x14 168
