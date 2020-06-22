@@ -1,7 +1,7 @@
 #include "../include/fpga_test.h"
 #include "../include/fpga_dot_font.h"
 
-int dev_fnd, dev_push_switch, dev_step_motor, dev_buzzer, dev_dip_switch, dev_text_lcd;
+int dev_fnd, dev_dot, dev_push_switch, dev_step_motor, dev_buzzer, dev_dip_switch, dev_text_lcd, dev_led;
 
 void fnd(char* str) {
 	int j;
@@ -141,45 +141,37 @@ int dip_switch(void) {
 }
 
 void dot(int num) {
-	int dev_dot;
 	ssize_t ret;
 
 	char usage[50];
 
-	dev_dot = open(DOT_DEVICE, O_WRONLY);
-
 	ret = write(dev_dot, fpga_number[num], sizeof(fpga_number[num]));
-
-	close(dev_dot);
 }
 
-void led(char data) {
-	int dev_led;
+void led(unsigned char data) {
 	ssize_t ret;
 
 	char usage[50];
 	
-	dev_led = open(LED_DEVICE, O_RDWR);
-
 	ret = write(dev_led, &data, 1);
 
 	sleep(1);
 
 	ret = read(dev_led, &data, 1);
-
-	close(dev_led);
 }
 
 void countdown(void){
 	int i = 15;
 	int dot_val;
 	int led_val;
+	unsigned char led_pre;
 	
 	for(i; i > 0; i--)
 	{
 		led_val = i % 10;
 		dot_val = i / 10;
-		led((char)led_val);
+		led_pre = (unsigned char)led_val;
+		led(led_val+'0');
 		dot(dot_val);
 		sleep(1);
 	}
@@ -235,6 +227,8 @@ void main(void)
 	dev_buzzer = open(BUZZER_DEVICE, O_RDWR);
 	dev_text_lcd = open(TEXT_LCD_DEVICE, O_WRONLY);
 	dev_dip_switch = open(DIP_SWITCH_DEVICE, O_RDONLY);
+	dev_led = open(LED_DEVICE, O_RDWR);
+	dev_dot = open(DOT_DEVICE, O_WRONLY);
 	/*
 	for(i = 0; i < 5; i++)
 	{
@@ -282,4 +276,6 @@ void main(void)
 	close(dev_buzzer);
 	close(dev_text_lcd);
 	close(dev_dip_switch);
+	close(dev_led);
+	close(dev_dot);
 }
