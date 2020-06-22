@@ -173,13 +173,13 @@ void led(char data) {
 void countdown(){
 	int i = 30;
 	int dot_val;
-	char led_val;
+	int led_val;
 	
 	for(i; i > 0; i--)
 	{
-		sprintf(led_val, "%d", i % 10);
+		led_val = i % 10;
 		dot_val = i / 10;
-		led(led_val);
+		led((char)led_val);
 		dot(dot_val);
 		sleep(1);
 	}

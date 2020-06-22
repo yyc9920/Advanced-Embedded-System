@@ -5,14 +5,16 @@ MT 	:= fpga_step_motor_driver
 BZ	:= fpga_buzzer_driver
 TX	:= fpga_text_lcd_driver
 DIP	:= fpga_dip_switch_driver
+LED	:= fpga_led_driver
+DOT	:= fpga_dot_driver
 APP	:= fpga_$(DEV)_test
 TFTPDIR := /tftpboot
 CC 	= arm-none-linux-gnueabi-gcc
 KDIR	:= /root/work/achroimx6q/kernel
 PWD	:= $(shell pwd)
-obj-m	:= $(FND).o $(SWT).o $(MT).o $(BZ).o $(TX).o $(DIP).o
+obj-m	:= $(FND).o $(SWT).o $(MT).o $(BZ).o $(TX).o $(DIP).o $(LED).o $(DOT).o
 
-all:	$(FND) $(SWT) $(MT) $(BZ) $(TX) $(DIP) $(APP)
+all:	$(FND) $(SWT) $(MT) $(BZ) $(TX) $(DIP) $(LED) $(DOT) $(APP)
 
 $(FND):	$(FND).c
 	$(MAKE) -C $(KDIR) SUBDIRS=$(PWD) modules ARCH=arm
@@ -30,6 +32,12 @@ $(TX):	$(TX).c
 	$(MAKE) -C $(KDIR) SUBDIRS=$(PWD) modules ARCH=arm
 
 $(DIP):	$(DIP).c
+	$(MAKE) -C $(KDIR) SUBDIRS=$(PWD) modules ARCH=arm
+
+$(LED): $(LED).c
+	$(MAKE) -C $(KDIR) SUBDIRS=$(PWD) modules ARCH=arm
+
+$(DOT): $(DOT).c
 	$(MAKE) -C $(KDIR) SUBDIRS=$(PWD) modules ARCH=arm
 
 $(APP): $(APP).c
