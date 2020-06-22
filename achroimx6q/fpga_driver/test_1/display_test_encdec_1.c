@@ -2670,7 +2670,7 @@ void *fpgaThread(void *data)
 			reset_fnd();
 
 			//passwd_input = value;
-			for(i = 0; i < 4, i++)
+			for(i = 0; i < 4; i++)
 				passwd_input[i] = data_ps[i];
 
 			otp_int = otp_num();
