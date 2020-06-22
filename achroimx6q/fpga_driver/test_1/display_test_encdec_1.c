@@ -2678,10 +2678,7 @@ void *fpgaThread(void *data)
 			reset_fnd();
 
 			//passwd_input = value;
-			for(i = 0; i < 4; i++){
-				passwd_input[i] = data_ps[i];
-				
-			}
+			strcpy(passwd_input, data_ps);
 			printf("%s", passwd_input);
 			otp_int = otp_num();
 			sprintf(otp_bi, "%s", intToBinary(otp_int));
