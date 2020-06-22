@@ -2730,7 +2730,7 @@ void *fpgaThread(void *data)
 	close(dev_dip_switch);
 }
 
-void *countdownThread(){
+void *countdownThread(void *data){
 	int i = 30;
 	int dot_val;
 	int led_val;
