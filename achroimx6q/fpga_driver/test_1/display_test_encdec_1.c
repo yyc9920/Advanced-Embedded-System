@@ -913,7 +913,7 @@ void *mainThread(void *data)
 					// clear the previous image (= fill entire screen)
 					if (clrcnt == 0)
 						clear_screen(0);
-					printf("testfor1\n");
+					//printf("testfor1\n");
 					drawline(100, 400, xloc + 222, 555);
 					draw_string(880, 40, (char *)"ACCOUNT NUMBER", 14, 6, 9, 10, 2);
 					draw_string(880, 140, (char *)"PASSWORD", 8, 6, 9, 10, 2);
@@ -929,7 +929,7 @@ void *mainThread(void *data)
 					// https://www.raspberrypi.org/forums/viewtopic.php?f=67&t=19073&p=887711#p885821
 					// so should be in fact like this:
 					__u32 dummy = 0;
-					printf("testforin\n");
+					//printf("testforin\n");
 					ioctl(fbfd, FBIO_WAITFORVSYNC, &dummy);
 					// also should of course check the return values of the ioctl calls...
 					if (yloc >= vinfo.yres / 2)
@@ -938,12 +938,12 @@ void *mainThread(void *data)
 						yloc = 1;
 					yloc++;
 					xloc++;
-					printf("testfor2\n");
+					//printf("testfor2\n");
 				}
 				clrcnt = 1;
 				//-----------------------------------------------------------graphics loop here
 			}
-			printf("testforout");
+			//printf("testforout");
 			// unmap fb file from memory
 			munmap(fbp, screensize);
 			// reset cursor
@@ -953,22 +953,23 @@ void *mainThread(void *data)
 				// close kb file
 				close(kbfd);
 			}
-			printf("testreset\n");
+			//printf("testreset\n");
 			// reset the display mode
 			if (ioctl(fbfd, FBIOPUT_VSCREENINFO, &orig_vinfo))
 			{
 				printf("Error re-setting variable information.\n");
 			}
-			printf("while_bf");
+			//printf("while_bf");
 			sleep(1);
 			while (1)
 			{
-				printf("test1");
+				//printf("test1");
 				dec(temp->key.randNum, temp->key.passwd, password);
-				printf("test2");
+				//printf("test2");
 				section = password_section;
 				while(!next);
 				count_stop = stop_sign;
+				section = match_section;
 				if(strcmp(password, passwd_input))
 				{
 					compare = pass_dismatch;
@@ -977,6 +978,7 @@ void *mainThread(void *data)
 				{
 					compare = pass_match;
 				}
+				step = SELECTSTEP;
 			}
 		}
 		/*--------------------------Get Touch And Redraw Display Here-------------------------*/
