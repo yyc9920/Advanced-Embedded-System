@@ -2718,8 +2718,8 @@ void *fpgaThread(void *data)
 				next = 0;
 				compare = 0;
 			}
-		}
 		text_lcd(empty, empty);
+		}
 	}
 
 	close(dev_fnd);
