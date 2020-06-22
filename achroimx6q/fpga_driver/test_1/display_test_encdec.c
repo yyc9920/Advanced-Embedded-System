@@ -2782,4 +2782,4 @@ int main()
 	pthread_join(p_thread[3], (void *)&status);
 
 	return 0;
-}
+}}
