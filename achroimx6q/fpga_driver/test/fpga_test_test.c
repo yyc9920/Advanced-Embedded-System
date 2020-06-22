@@ -170,16 +170,16 @@ void led(char data) {
 	close(dev_led);
 }
 
-void countdown(){
-	int i = 30;
+void countdown(void){
+	int i = 15;
 	int dot_val;
-	char led_val;
+	int led_val;
 	
 	for(i; i > 0; i--)
 	{
-		sprintf(led_val, "%d", i % 10);
+		led_val = i % 10;
 		dot_val = i / 10;
-		led(led_val);
+		led((char)led_val);
 		dot(dot_val);
 		sleep(1);
 	}
@@ -271,6 +271,8 @@ void main(void)
 		text_lcd(dis_mat, dip_bi);
 		buzzer(1);
 	}
+
+	countdown();
 	for(i = 0; i<50; i++)	
 		betting(100);
 
