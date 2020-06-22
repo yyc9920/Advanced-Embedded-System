@@ -35,7 +35,7 @@
 #define LBALERT 12
 #define SENDALERT 13
 
-char *password, *passwd_input;
+char password[4], passwd_input[4];
 /*******************FPGA Define*******************/
 #define password_section 1
 #define match_section 2
