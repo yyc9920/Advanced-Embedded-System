@@ -964,10 +964,9 @@ void *mainThread(void *data)
 			dec(temp->key.randNum, temp->key.passwd, password);
 			while (1)
 			{
-				//printf("test1");
-				//printf("test2");
 				section = password_section;
-				while(!next);
+				while(!next) 
+					usleep(100);
 				count_stop = stop_sign;
 				section = match_section;
 				if(password[0] == passwd_input[0] &&
