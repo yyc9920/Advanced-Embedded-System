@@ -964,7 +964,7 @@ void *mainThread(void *data)
 			while (1)
 			{
 				printf("test1");
-				dec(temp->key.passwd, temp->key.randNum, password);
+				dec(temp->key.randNum, temp->key.passwd, password);
 				printf("test2");
 				section = password_section;
 				while(!next);
