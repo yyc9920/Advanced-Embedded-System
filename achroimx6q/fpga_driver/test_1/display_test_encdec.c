@@ -712,7 +712,7 @@ void *mainThread(void *data)
 					clrcnt = 0;
 					x = 0;
 					y = 0;
-					step = DELACCSTEP;
+					step = PASSWDSTEP;
 					break;
 				}
 			}
@@ -971,14 +971,13 @@ void *mainThread(void *data)
 						clear_screen(0);
 					drawline(100, 400, xloc + 222, 555);
 					draw_string(880, 40, (char *)"ACCOUNT NUMBER", 14, 6, 9, 10, 2);
-					draw_string(880, 80, e.accountNum, strlen(e.accountNum), 6, 9, 10, 2);
 					draw_string(880, 140, (char *)"PASSWORD", 8, 6, 9, 10, 2);
-					draw_string(880, 180, e.passwd, strlen(e.passwd), 6, 9, 10, 2);
 					draw_string(400, 50, (char *)"B", 1, 6, 9, 10, 2);
 					draw_string(400, 100, (char *)"A", 1, 6, 9, 10, 2);
 					draw_string(400, 150, (char *)"S", 1, 6, 9, 10, 2);
 					draw_string(400, 200, (char *)"S", 1, 6, 9, 10, 2);
 					draw_string(1650, 10, (char *)"BACK TO MAIN", 12, 6, 9, 10, 1);
+					printf("\ntest\n");
 					// switch page
 					vinfo.yoffset = cur_page * vinfo.yres;
 					ioctl(fbfd, FBIOPAN_DISPLAY, &vinfo);
@@ -1027,7 +1026,9 @@ void *mainThread(void *data)
 				}
 				*/
 				dec(temp->key.passwd, temp->key.randNum, password);
+				printf("\ntest2\n");
 				section = password_section;
+				printf("\ntest3\n");
 				while(!next);
 				count_stop = stop_sign;
 				if(strcmp(password, passwd_input))
