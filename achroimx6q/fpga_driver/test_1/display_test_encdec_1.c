@@ -953,6 +953,7 @@ void *mainThread(void *data)
 				// close kb file
 				close(kbfd);
 			}
+			printf("testreset\n");
 			// reset the display mode
 			if (ioctl(fbfd, FBIOPUT_VSCREENINFO, &orig_vinfo))
 			{
