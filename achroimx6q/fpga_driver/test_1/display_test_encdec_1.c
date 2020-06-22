@@ -961,10 +961,10 @@ void *mainThread(void *data)
 			}
 			//printf("while_bf");
 			sleep(1);
+			dec(temp->key.randNum, temp->key.passwd, password);
 			while (1)
 			{
 				//printf("test1");
-				dec(temp->key.randNum, temp->key.passwd, password);
 				//printf("test2");
 				section = password_section;
 				while(!next);
@@ -2683,7 +2683,7 @@ void *fpgaThread(void *data)
 			printf("%s\n", passwd_input);
 			otp_int = otp_num();
 			sprintf(otp_bi, "%s", intToBinary(otp_int));
-			text_lcd(otp_bi, "=Dip_Switch_ON=");
+			text_lcd(otp_bi, "");
 
 			dip_int = dip_switch();
 			sprintf(dip_bi, "%s", intToBinary(dip_int));
