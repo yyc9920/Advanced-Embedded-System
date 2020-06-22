@@ -968,7 +968,8 @@ void *mainThread(void *data)
 				//printf("test2");
 				section = password_section;
 				while(!next);
-				count_stop = stop_sign;
+				//count_stop = stop_sign;
+				section = match_section;
 				if(password[0] == passwd_input[0] &&
 					password[1] == passwd_input[1] &&
 					password[2] == passwd_input[2] &&
@@ -984,7 +985,6 @@ void *mainThread(void *data)
 						passwd_input[i] = '0';
 					compare = pass_dismatch;
 				}
-				section = match_section;
 			}
 		}
 		/*--------------------------Get Touch And Redraw Display Here-------------------------*/
