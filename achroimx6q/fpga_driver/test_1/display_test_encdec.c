@@ -2546,7 +2546,7 @@ int dip_switch(void) {
 	return dip_sw_buf;
 }
 
-void led(char data) {
+void led(char data1) {
 	int dev_led;
 	ssize_t ret;
 
@@ -2554,11 +2554,11 @@ void led(char data) {
 	
 	dev_led = open(LED_DEVICE, O_RDWR);
 
-	ret = write(dev_led, &data, 1);
+	ret = write(dev_led, &data1, 1);
 
 	sleep(1);
 
-	ret = read(dev_led, &data, 1);
+	ret = read(dev_led, &data1, 1);
 
 	close(dev_led);
 }
