@@ -2679,9 +2679,9 @@ void *fpgaThread(void *data)
 
 			//passwd_input = value;
 			sprintf(passwd_input, "%d%d%d%d",data_ps[0], data_ps[1], data_ps[2], data_ps[3]);
-			printf("%s", passwd_input);
-			otp_int = otp_num();
 			sprintf(otp_bi, "%s", intToBinary(otp_int));
+			//printf("%s\n", passwd_input);
+			otp_int = otp_num();
 			text_lcd(otp_bi, "=Dip_Switch_ON=");
 
 			dip_int = dip_switch();
