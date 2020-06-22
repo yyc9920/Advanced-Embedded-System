@@ -960,7 +960,9 @@ void *mainThread(void *data)
 
 			while (1)
 			{
+				printf("test1");
 				dec(temp->key.passwd, temp->key.randNum, password);
+				printf("test2");
 				section = password_section;
 				while(!next);
 				count_stop = stop_sign;
