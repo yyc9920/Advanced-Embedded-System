@@ -2683,17 +2683,12 @@ void *fpgaThread(void *data)
 			if(dip_int == otp_int)	
 			{
 				text_lcd(mat, dip_bi);
-				step_motor(1, 1, 5);
-				sleep(3);
-				step_motor(0, 1, 5);
 				section = 0;
 				next = 1;
-				step = SELECTSTEP;
 			}
 			else 
 			{
 				text_lcd(dis_mat, dip_bi);
-				buzzer(2);
 				section = 0;
 				next = 1;
 			}
@@ -2702,17 +2697,18 @@ void *fpgaThread(void *data)
 		{
 			if(compare == pass_match)
 			{
-				text_lcd(mat, dip_bi);
+				//text_lcd(mat, dip_bi);
 				step_motor(1, 1, 5);
 				sleep(3);
 				step_motor(0, 1, 5);
 				section = 0;
 				next = 0;
 				compare = 0;
+				step = SELECTSTEP;
 			}
 			else if(compare == pass_dismatch)
 			{
-				text_lcd(dis_mat, dip_bi);
+				//text_lcd(dis_mat, dip_bi);
 				buzzer(1);
 				section = 0;
 				next = 0;
@@ -2740,7 +2736,6 @@ void *countdownThread(){
 	while(1){
 		for(i; i >= 0; i--)
 		{
-			text_lcd(" Enter PASSWORD ",empty);
 			led_val = i % 10;
 			dot_val = i / 10;
 			led((char)led_val);
@@ -2755,7 +2750,6 @@ void *countdownThread(){
 			buzzer(2);
 		}
 		dot(0);
-		text_lcd(empty, empty);
 	}
 	close(dev_led);
 	close(dev_dot);
