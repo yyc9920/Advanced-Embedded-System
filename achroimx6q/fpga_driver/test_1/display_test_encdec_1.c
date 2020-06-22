@@ -2652,7 +2652,7 @@ void *fpgaThread(void *data)
 	int data_ps[5] = {0}, i, otp_int, dip_int;
 	char data_str[5] = {'0', '0', '0', '0', '0'};
 	char value[4];
-	char otp_bi[16] = {0}, dip_bi[16] = {0};
+	char otp_bi[8] = {0}, dip_bi[8] = {0};
 	char *mat = "MATCH!";
 	char *dis_mat = "DISMATCH!";
 
@@ -2704,7 +2704,6 @@ void *fpgaThread(void *data)
 		{
 			if(compare == pass_match)
 			{
-				//text_lcd(mat, dip_bi);
 				step_motor(1, 1, 5);
 				sleep(3);
 				step_motor(0, 1, 5);
@@ -2715,7 +2714,6 @@ void *fpgaThread(void *data)
 			}
 			else if(compare == pass_dismatch)
 			{
-				//text_lcd(dis_mat, dip_bi);
 				buzzer(2);
 				compare = 0;
 			}
@@ -2751,7 +2749,7 @@ void *countdownThread(void *data){
 		if(i == 0)
 		{
 			text_lcd("    Time Over   ", empty);
-			buzzer(2);
+			//buzzer(2);
 		}
 		dot(0);
 	}
