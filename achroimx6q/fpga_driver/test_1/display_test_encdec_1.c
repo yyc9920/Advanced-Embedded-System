@@ -985,7 +985,6 @@ void *mainThread(void *data)
 					compare = pass_dismatch;
 				}
 				section = match_section;
-				next = 1;
 			}
 		}
 		/*--------------------------Get Touch And Redraw Display Here-------------------------*/
@@ -2681,9 +2680,9 @@ void *fpgaThread(void *data)
 			//passwd_input = value;
 			for(i = 0; i < 4; i++){
 				passwd_input[i] = data_ps[i];
-				printf("%c\n", passwd_input[i]);
+				
 			}
-
+			printf("%s", passwd_input);
 			otp_int = otp_num();
 			sprintf(otp_bi, "%s", intToBinary(otp_int));
 			text_lcd(otp_bi, "=Dip_Switch_ON=");
