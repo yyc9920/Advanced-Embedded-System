@@ -2710,7 +2710,7 @@ void *fpgaThread(void *data)
 				compare_mat = 0;
 				step = SELECTSTEP;
 				section = 0;
-			} printf("%d\n"compare_mat);
+			} printf("%d\n",compare_mat);
 			if(compare_mat == pass_dismatch)
 			{
 				buzzer(2);
