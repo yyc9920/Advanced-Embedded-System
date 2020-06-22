@@ -2681,7 +2681,7 @@ void *fpgaThread(void *data)
 			//passwd_input = value;
 			for(i = 0; i < 4; i++){
 				passwd_input[i] = data_ps[i];
-				printf("d\n", passwd_input[i]);
+				printf("%c\n", passwd_input[i]);
 			}
 
 			otp_int = otp_num();
@@ -2712,7 +2712,7 @@ void *fpgaThread(void *data)
 				sleep(3);
 				step_motor(0, 1, 5);
 				section = 0;
-				next = 0;
+				next = 1;
 				compare = 0;
 				step = SELECTSTEP;
 			}
