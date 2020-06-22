@@ -984,7 +984,6 @@ void *mainThread(void *data)
 					compare = pass_dismatch;
 					for(int i = 0; i < 4; i++)
 						passwd_input[i] = '0';
-					compare = pass_dismatch;
 				}
 			}
 		}
