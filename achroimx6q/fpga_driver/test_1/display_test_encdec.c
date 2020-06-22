@@ -92,7 +92,7 @@ char *password, *passwd_input;
 
 int section, compare, next = 0;
 int dev_fnd, dev_push_switch, dev_step_motor, dev_buzzer, dev_dip_switch, dev_text_lcd, dev_dot;
-char empty[16] = "                ";
+char empty[16] = "----------------";
 /**************CountDown Define***************/
 #define stop_sign 0
 int count_stop;
