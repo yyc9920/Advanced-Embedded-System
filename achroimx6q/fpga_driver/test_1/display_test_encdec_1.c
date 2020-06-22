@@ -970,13 +970,17 @@ void *mainThread(void *data)
 				while(!next);
 				count_stop = stop_sign;
 				section = match_section;
-				if(strcmp(password, passwd_input))
+				if(strcmp(*password, *passwd_input))
 				{
 					compare = pass_dismatch;
+					for(int i = 0; i < 4; i++)
+						passwd_input[i] = '0';
 				}
 				else 
 				{
 					compare = pass_match;
+					for(int i = 0; i < 4; i++)
+						passwd_input[i] = '0';
 				}
 			}
 		}
